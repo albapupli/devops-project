@@ -30,21 +30,28 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Publish to Docker Hub
+      uses: docker/build-push-action@v1  
+      with:       
+        username: ${{ secrets.DOCKER_HUB_USERNAME }} 
+        password:  ${{ secrets.DOCKER_HUB_TOKEN }}
+        repository: albapupli/devops-project     
+        #tags: ${{github.run_number}}
     
-  deploy:
-    runs-on: ubuntu-18.04
-    needs: build
+  # deploy:
+    # runs-on: ubuntu-18.04
+    #needs: build
 
-    steps:
-    - uses: actions/checkout@v3
+    #steps:
+    #- uses: actions/checkout@v3
     #- name: login to docker
-    - uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+    #- uses: docker/login-action@v1
+     # with:
+      #  username: ${{ secrets.DOCKER_HUB_USERNAME }}
+       # password: ${{ secrets.DOCKER_HUB_PASSWORD }}
     
-    - name: docker push
-      run: docker push albapupli/devops-project:docker_img
+    #- name: docker push
+     # run: docker push albapupli/devops-project:docker_img
     
     
     #- name: Build and push Docker Img
