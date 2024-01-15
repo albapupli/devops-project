@@ -1,4 +1,4 @@
-FROM eclipse-temurin:19-alpine
+FROM openjdk:11
 VOLUME /tmp
 EXPOSE 8080
 ARG JAR_FILE=./target/RandomNumberGenerator-0.0.1-SNAPSHOT.jar

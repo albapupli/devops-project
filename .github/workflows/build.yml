@@ -34,9 +34,9 @@ jobs:
       uses: docker/build-push-action@v1  
       with:       
         username: ${{ secrets.DOCKER_HUB_USERNAME }} 
-        password:  ${{ secrets.DOCKER_HUB_TOKEN }}
+        password:  ${{ secrets.DOCKER_PASSWORD }}
         repository: albapupli/devops-project     
-        #tags: ${{github.run_number}}
+        tags: ${{github.run_number}}
     
   # deploy:
     # runs-on: ubuntu-18.04
