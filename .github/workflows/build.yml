@@ -38,8 +38,7 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        repository: albapupli/devops-project
-       # tags: ${{ github.run_number }}
+        repository: albapupli/devops-project # repo of dockerhub
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
   #  - name: Update dependency graph
