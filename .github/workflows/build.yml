@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest #operating system it is run on
 
     steps:
-    - uses: actions/checkout@v3 
+    - uses: actions/checkout@v3 # checks the dockerfile in order to build t6he docker img so checks for repo in there
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -39,3 +39,4 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         repository: albapupli/devops-project # repo of dockerhub
+        push: true
