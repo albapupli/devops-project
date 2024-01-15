@@ -6,8 +6,9 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Java CI with Maven # name of prj
 
+# checks if there are any push or pull req on master branch, then do the following (executes line 18)
 on:
   push:
     branches: [ "master" ]
@@ -17,10 +18,10 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #operating system it is run on
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -33,6 +34,8 @@ jobs:
     - name: Publish to Docker Hub
       uses: docker/build-push-action@v1
       with:
+        registry: docker.io
+        dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         repository: albapupli/devops-project
