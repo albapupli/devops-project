@@ -31,7 +31,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Publish to Docker Hub
+    - name: Build and push Docker Img
       uses: docker/build-push-action@v1
       with:
         registry: docker.io
@@ -40,3 +40,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_PASSWORD }}
         repository: albapupli/devops-project # repo of dockerhub
         push: true
+      run:
+        docker build -t albapupli/docker-project:<docker image for devops project>
+        docker login -u $DOCKER_HUB_USERNAME -p DOCKER_HUB_PASSWORD
+        docker push albapupli/docker-project:<docker image for devops project>
