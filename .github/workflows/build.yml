@@ -33,23 +33,23 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     
-    - name: Build and Push Docker Image
-      env:
-        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-      run: |
-        docker build -t albapupli/devops-project:latest .
-        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-        docker push albapupli/devops-project:latest
+    #- name: Build and Push Docker Image
+     # env:
+      #  DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+       # DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+      #run: |
+       # docker build -t albapupli/devops-project:latest .
+        #docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+        #docker push albapupli/devops-project:latest
   
-        
-    #- name: Publish to Docker Hub
-     # uses: docker/build-push-action@v1  
-      #with:       
-       # username: ${{ secrets.DOCKER_USERNAME }} 
-        #password:  ${{ secrets.DOCKER_USERNAME }}
-        #repository: albapupli/devops-project     
-        #tags: ${{github.run_number}}DOCKER_USERNAME
+
+    - name: Publish to Docker Hub
+      uses: docker/build-push-action@v1  
+      with:       
+        username: ${{ secrets.DOCKERHUB_USERNAME }} 
+        password:  ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: albapupli/devops-project     
+        tags: ${{github.run_number}}
     
   # deploy:
     # runs-on: ubuntu-18.04
