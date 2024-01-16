@@ -42,6 +42,7 @@ jobs:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
         docker push albapupli/devops-project:latest
   
+        
     #- name: Publish to Docker Hub
      # uses: docker/build-push-action@v1  
       #with:       
