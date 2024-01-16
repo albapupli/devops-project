@@ -35,11 +35,11 @@ jobs:
     
     - name: Build and Push Docker Image
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
       run: |
         docker build -t albapupli/devops-project:latest .
-        docker login -u $DOCKER_PASSWORD -p $DOCKER_PASSWORD
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
         docker push albapupli/devops-project:latest
   
     #- name: Publish to Docker Hub
@@ -48,7 +48,7 @@ jobs:
        # username: ${{ secrets.DOCKER_USERNAME }} 
         #password:  ${{ secrets.DOCKER_USERNAME }}
         #repository: albapupli/devops-project     
-        #tags: ${{github.run_number}}
+        #tags: ${{github.run_number}}DOCKER_USERNAME
     
   # deploy:
     # runs-on: ubuntu-18.04
