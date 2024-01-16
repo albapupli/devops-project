@@ -38,9 +38,9 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker build -t your-dockerhub-username/your-repository-name:latest .
+        docker build -t albapupli/devops-project:latest .
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
-        docker push your-dockerhub-username/your-repository-name:latest
+        docker push albapupli/devops-project:latest
     
     
     #- name: Publish to Docker Hub
