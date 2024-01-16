@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-number-application
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: random-number-app
+  template:
+    metadata:
+      labels:
+        app: random-number-app
+    spec:
+      containers:
+      - name: devops-project-container
+        image: albapupli/devops-project:latest # Update with your Docker image details
+        ports:
+        - containerPort: 8080 # Adjust port if your Java app listens on a different port
+
+
+        # apply in docker desktop using these commands
+        # kubectl apply -f deployment.yaml
+        # kubectl apply -f service.yaml
