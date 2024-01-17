@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: random-number-application
+  name: random-number-app
 spec:
   replicas: 1 
   selector:
@@ -13,7 +13,7 @@ spec:
         app: random-number-app
     spec:
       containers:
-      - name: devops-project-container
+      - name: random-number-app
         image: albapupli/devops-project:latest # Update with your Docker image details
         ports:
         - containerPort: 8080 # Adjust port if your Java app listens on a different port
