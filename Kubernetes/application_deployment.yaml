@@ -15,8 +15,18 @@ spec:
       containers:
       - name: random-number-app
         image: albapupli/devops-project:latest # Update with your Docker image details
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080 # Adjust port if your Java app listens on a different port
+        volumeMounts:
+        - name: logs-volume
+          mountPath: /var/logs
+    volumes:
+      - name: logs-volume
+        hostPath: 
+          path: /var/logs
+          type: DirectoryOrCreate
+
 
 
         # apply in docker desktop using these commands

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana-deployment
+  name: grafana
 spec:
   replicas: 1
   selector:
@@ -13,33 +13,15 @@ spec:
         app: grafana
     spec:
       containers:
-      - name: grafana
-        image: grafana/grafana:latest
-        ports:
-        - containerPort: 3000
-
-# grafana-deployment.yaml
-#apiVersion: apps/v1
-#kind: Deployment
-#metadata:
- # name: grafana-deployment
-#spec:
- # replicas: 1
-  #selector:
-   # matchLabels:
-    #  app: grafana
-  #template:
-   # metadata:
-    #  labels:
-     #   app: grafana
-    #spec:
-     # containers:
-      #- name: grafana
-       # image: grafana/grafana:8.0.4
-        #env:
-        #- name: GF_SECURITY_ADMIN_PASSWORD
-         # value: "your-grafana-admin-password"  # Set a secure password
-        #ports:
-        #- containerPort: 3000
-
-
+        - name: grafana
+          image: grafana/grafana:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: grafana-config-volume
+              mountPath: /etc/grafana/grafana.ini
+              subPath: grafana.ini
+      volumes:
+        - name: grafana-config-volume
+          configMap:
+            name: grafana-config

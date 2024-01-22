@@ -1,33 +1,25 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: grafana-service
+  name: grafana-srv1
 spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: 3000
   selector:
     app: grafana
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-srv2
+spec:
+  type: NodePort
   ports:
-    - protocol: TCP
-      port: 80
+    - port: 3001
       targetPort: 3000
-  type: LoadBalancer # Use "LoadBalancer" for Docker Desktop Kubernetes, "NodePort" for other setups
-
-  ---
-
-# grafana-service.yaml
-#apiVersion: v1
-#kind: Service
-#metadata:
- # name: grafana-service
-#spec:
- # selector:
-  #  app: grafana
-  #ports:
-   # - protocol: TCP
-    #  port: 3000
-     # targetPort: 3000
-  #type: NodePort  # Use "LoadBalancer" for Docker Desktop Kubernetes, "NodePort" for other setups
-
-
-  #After applying these configurations, you should be able to access 
-  #Prometheus at http://<Node-IP>:<NodePort> and 
-  #Grafana at http://<Node-IP>:<NodePort> (default credentials for Grafana are admin/admin).
+      nodePort: 32000
+  selector:
+    app: grafana
