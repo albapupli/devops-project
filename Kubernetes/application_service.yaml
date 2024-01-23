@@ -11,6 +11,8 @@ spec:
       targetPort: 8080 # Port on which the Java app inside the pods is running
   type: ClusterIP
 
+
+---
   --- 
 apiVersion: v1
 kind: Service
