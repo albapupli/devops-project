@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: grafana
+  name: grafana-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: grafana
+      app: grafana-deployment
   template:
     metadata:
       labels:
-        app: grafana
+        app: grafana-deployment
     spec:
       containers:
-        - name: grafana
-          image: grafana/grafana:latest
+        - name: random-number-app
+          image: albapupli/devops-project:latest
           ports:
             - containerPort: 3000
           volumeMounts:
-            - name: grafana-config-volume
+            - name: grafana-config
               mountPath: /etc/grafana/grafana.ini
               subPath: grafana.ini
       volumes:
-        - name: grafana-config-volume
+        - name: grafana-config
           configMap:
-            name: grafana-config
+            name: grafana-config-map

@@ -19,10 +19,10 @@ spec:
         ports:
         - containerPort: 8080 # Adjust port if your Java app listens on a different port
         volumeMounts:
-        - name: logs-volume
+        - name: logs
           mountPath: /var/logs
     volumes:
-      - name: logs-volume
+      - name: logs
         hostPath: 
           path: /var/logs
           type: DirectoryOrCreate
