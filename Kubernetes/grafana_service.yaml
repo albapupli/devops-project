@@ -8,7 +8,7 @@ spec:
       protocol: TCP
       targetPort: 3000
   selector:
-    app: grafana-deployment
+    app: grafana
   type: ClusterIP
 ---
 apiVersion: v1
@@ -22,4 +22,4 @@ spec:
       targetPort: 3000
       nodePort: 32000
   selector:
-    app: grafana-deployment
+    app: grafana
